@@ -1,12 +1,19 @@
-﻿using System;
-
+﻿using BenchmarkDotNet.Running;
+using System;
+using System.Diagnostics;
+//concurrentBag vs List
 namespace CodeOptimizations
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var threadvsTasks = BenchmarkRunner.Run<ThreadVsTasks>();
+            var stringBenchmark = BenchmarkRunner.Run<StringBuilderVsString>();
+            var forVsForEach = BenchmarkRunner.Run<ForVsForEach>();
+            var listVsArray = BenchmarkRunner.Run<ListVsArray>();
+            var classVsStruct = BenchmarkRunner.Run<ClassVsStruct>();
+            Console.ReadKey(true);
         }
     }
 }
